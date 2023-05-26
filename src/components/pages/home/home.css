@@ -1,0 +1,52 @@
+.homeDivContainer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px;
+    margin: auto;
+    outline: 1px solid red;
+    width: 60%;
+}
+
+.titleContainer{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.titleContainer > h3{
+    font-size: 31px;
+    font-weight: 600;
+}
+
+.usersContainer{
+    border: solid 2px blue;
+    width: 100%
+}
+
+.avatarContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatarInfo{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatarInfo > img{
+    border-radius: 150px;
+    height: 45px;
+    margin: 15px;
+}
+
+.avatarInfo > h6{
+    align-items: center;
+    display: flex;
+    font-size: 24px;
+    justify-content: center;
+}
+
