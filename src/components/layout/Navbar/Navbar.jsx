@@ -1,5 +1,5 @@
 import { Avatar, Badge, Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { customTheme } from "../../../themeconfig";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/auth/authSlice";
@@ -28,6 +28,7 @@ const Navbar = () => {
         }}
       >
         <Link
+          to={"/"}
           style={{
             color: "black",
             fontSize: "1.5rem",
@@ -45,37 +46,33 @@ const Navbar = () => {
           gap: "50px",
         }}
       >
-        <Link
-          style={{
-            color: "#031323",
-            fontWeight: 600,
-            fontSize: "16px",
-            padding: "10px"
+        <NavLink
+          to={"/"}
+          className={({ isActive }) => {
+            return isActive ? "active" : "notActive";
           }}
         >
           Share Feedback
-        </Link>
-        <Badge badgeContent={4} sx={{ padding: "10px" }} color="primary">
-          <Link
-            style={{
-              color: "#031323",
-              fontWeight: 600,
-              fontSize: "16px",
+        </NavLink>
+        <Badge badgeContent={4}  color="primary" sx={{padding:"10px"}}>
+          <NavLink
+            to={"/my-feedback"}
+            className={({ isActive }) => {
+              return isActive ? "active" : "notActive";
             }}
           >
             My Feedback
-          </Link>
+          </NavLink>
         </Badge>
-        <Badge badgeContent={4} color="primary" sx={{ padding: "10px" }}>
-          <Link
-            style={{
-              color: "#031323",
-              fontWeight: 600,
-              fontSize: "16px",
+        <Badge badgeContent={4} color="primary">
+          <NavLink
+            to={"/team-feedback"}
+            className={({ isActive }) => {
+              return isActive ? "active" : "notActive";
             }}
           >
             Team Feedback
-          </Link>
+          </NavLink>
         </Badge>
       </Box>
       <Box

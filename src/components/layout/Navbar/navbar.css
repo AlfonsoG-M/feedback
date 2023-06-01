@@ -1,13 +1,14 @@
+.active {
+  border-bottom: 2px solid #ab61e5;
+  color: #031323;
+  font-size: 16px;
+  font-weight: 600;  
+  text-decoration: none;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.notActive {
+  color: #031323;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}

@@ -5,14 +5,15 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  min-height: calc(100vh - 56px) ;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
-  min-height: 100vh;
 }
 
 .containerForm {
   background-color: white;
-  height: 500px;
+  
 }
 
 .titleLogin {

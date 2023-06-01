@@ -6,17 +6,9 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import "./home.css";
-import { useState } from "react";
-import data from "../../../../src/db/db.json";
-import { BorderAllOutlined } from "@mui/icons-material";
+import './shareFeedback.css'
 
-const Home = () => {
-  const [period, setPeriod] = useState("");
-  const handleChange = (event) => {
-    setPeriod(event.target.value);
-  };
-
+const ShareFeedback = ({users, period, setPeriod, exists, fillOutfn}) => {
   return (
     <div className="homeDivContainer">
       <div className="titleContainer">
@@ -31,33 +23,41 @@ const Home = () => {
               id="demo-simple-select"
               value={period}
               label="Feedback Period"
-              onChange={handleChange}
+              onChange={(e)=>setPeriod(e.target.value)}
               sx={{
                 width: "342px",
               }}
             >
-              <MenuItem value={102022}>October 2022</MenuItem>
-              <MenuItem value={112022}>November 2022</MenuItem>
-              <MenuItem value={122022}>December 2022</MenuItem>
+              <MenuItem value={"10-2022"}>October 2022</MenuItem>
+              <MenuItem value={"11-2022"}>November 2022</MenuItem>
+              <MenuItem value={"12-2022"}>December 2022</MenuItem>
             </Select>
           </FormControl>
         </Box>
       </div>
       <div className="usersContainer">
-        {data.user.map((user) => {
+        {users.map((user) => {
           return (
             <div key={user.id} className="avatarContainer">
               <div className="avatarInfo">
                 <img src={user.avatarUrl} alt="avatar img" />
                 <h6>{user.name}</h6>
               </div>
-              <Button sx={{ width: "200px", margin: "30px"}}>boton</Button>
+              {exists(user.id) ? (
+                <Button sx={{ width: "200px", margin: "20px" }}>
+                  view submission
+                </Button>
+              ) : (
+                <Button sx={{ width: "200px", margin: "20px" }} onClick={()=>fillOutfn(user)}>
+                  fill out
+                </Button>
+              )}
             </div>
           );
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default ShareFeedback

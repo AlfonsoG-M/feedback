@@ -29,8 +29,12 @@ const LoginContainer = () => {
 const dispatch = useDispatch()
 
 const loginFn = ()=>{
-    dispatch(login(user))
+    if(user.name){
+      dispatch(login(user))
     navigate("/")
+    } else {
+      alert("Debe seleccionar un usuario")
+    }
 }
   return (
     <Login loginFn={loginFn} handleChange={handleChange} users={users}/>

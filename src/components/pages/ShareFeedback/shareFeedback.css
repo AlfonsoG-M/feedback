@@ -5,7 +5,6 @@
     gap: 30px;
     padding: 40px;
     margin: auto;
-    outline: 1px solid red;
     width: 60%;
 }
 
@@ -22,13 +21,13 @@
 }
 
 .usersContainer{
-    border: solid 2px blue;
     width: 100%
 }
 
 .avatarContainer{
     display: flex;
     justify-content: space-between;
+    border: 1px solid #F2F3F4;
 }
 
 .avatarInfo{
