@@ -9,8 +9,14 @@ export const customTheme = createTheme({
         },
         secondary:{
             main: "#ACB1B6",
-            second: "#D9DCDE"
+            second: "#D9DCDE",
+            
+        },
+
+        third:{
+            main: "#1DDEBB"
         }
+
 
 
     },

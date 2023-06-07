@@ -4,6 +4,8 @@ import ScaleContainer from "../scale/ScaleContainer";
 import TextContainer from "../text/TextContainer";
 import "./questions.css";
 import { Link, useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const Questions = ({
   userSelected,
@@ -11,11 +13,17 @@ const Questions = ({
   questionNumber,
   nextQuestion,
   previousQuestion,
+  calcularProgreso,
+  length,
+  handleAnswer
 }) => {
   const navigate = useNavigate();
+
   return (
     <div className="questionsContainer">
-      <Link className="goBack" to={navigate - 1}>BACK</Link>
+      <Link className="goBack" to={navigate - 1}>
+        BACK
+      </Link>
       <div className="questionsHeader">
         <div>
           <h2 className="questionTitle">{questions[questionNumber].label}</h2>
@@ -30,20 +38,50 @@ const Questions = ({
       <div>
         <div>
           {questions[questionNumber].type === "scale" && (
-            <ScaleContainer question={questions[questionNumber]} />
+            <ScaleContainer handleAnswer={handleAnswer} question={questions[questionNumber]} />
           )}
           {questions[questionNumber].type === "text" && (
-            <TextContainer question={questions[questionNumber]} />
+            <TextContainer handleAnswer={handleAnswer} question={questions[questionNumber]} />
           )}
           {questions[questionNumber].type === "multipleChoice" && (
-            <MultipleChoiceContainer question={questions[questionNumber]} />
+            <MultipleChoiceContainer handleAnswer={handleAnswer} question={questions[questionNumber]} />
           )}
         </div>
       </div>
-      <div>
-        <Button onClick={previousQuestion}>Previous</Button>
-        <Button>Skip</Button>
-        <Button onClick={nextQuestion}>Next</Button>
+      <div className="buttonsContainer">
+        <Button
+          onClick={previousQuestion}
+          sx={{
+            background: "white",
+            color: "#031323",
+            ":hover": { background: "#ACB1B6", color: "white" },
+          }}
+        >
+          Previous
+        </Button>
+        <Button sx={{
+            background: "white",
+            color: "#031323",
+            ":hover": { background: "#ACB1B6", color: "white" },
+          }}>Skip</Button>
+        <Button onClick={nextQuestion} sx={{
+            background: "white",
+            color: "#031323",
+            ":hover": { background: "#ACB1B6", color: "white" },
+          }}>Next</Button>
+      </div>
+      <Box sx={{ width: "100%" }}>
+        <LinearProgress
+          variant="determinate"
+          value={calcularProgreso}
+          color="third"
+        />
+      </Box>
+      <div className="bottomContainer">
+        <p>QUESTIONS COMPLETED</p>
+        <p>
+          {questionNumber + 1} / {length}
+        </p>
       </div>
     </div>
   );

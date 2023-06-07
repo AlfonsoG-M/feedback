@@ -4,7 +4,7 @@
       "avatarUrl": "https://i.pravatar.cc/150?img=68",
       "id": "p0",
       "name": "John Smith",
-      "myFeedbacks": [],
+      "myFeedbacks": [{"user": "", "results": [{"q1": "answer 1"},{"q2": "answer 2"}, {"q3": "answer 3"}]}],
       "teamfeedbacks": []
     },
     {

@@ -1,11 +1,14 @@
-import MultipleChoice from "./MultipleChoice"
+import MultipleChoice from "./MultipleChoice";
 
-const MultipleChoiceContainer = () => {
+const MultipleChoiceContainer = ({ question, handleAnswer  }) => {
+
+
   return (
-    <div>
-        <MultipleChoice/>
-    </div>
-  )
-}
+    <MultipleChoice
+      handleAnswer={handleAnswer}
+      question={question}
+    />
+  );
+};
 
-export default MultipleChoiceContainer
+export default MultipleChoiceContainer;

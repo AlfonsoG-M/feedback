@@ -1,41 +1,61 @@
-.questionsContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    width: 48%;
+.questionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 48%;
 }
 
-.goBack{
-    align-self: flex-start;
-    color: black;
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    margin-left: 30px;
-    text-decoration: none;
+.goBack {
+  align-self: flex-start;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-left: 30px;
+  text-decoration: none;
 }
-.questionsHeader{
-    display: flex;
-    gap: 6%;
-    margin: 30px;
-}
-
-.questionTitle{
-    font-size: 31px;
-    font-weight: 600;
+.questionsHeader {
+  display: flex;
+  gap: 6%;
+  margin: 30px;
 }
 
-.avatarImg{
-    border-radius: 150px;
-    height: 80px;
-    width: 80px;
+.questionTitle {
+  font-size: 31px;
+  font-weight: 600;
+}
+
+.avatarImg {
+  border-radius: 150px;
+  height: 80px;
+  width: 80px;
 }
 
 .questionsHeader > div > p {
-    color: #ACB1B6;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 15px;
+  color: #acb1b6;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 50px;
+  padding: 20px;
+}
+
+.bottomContainer {
+  align-self: baseline;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.buttonQuestion{
+  background-color: white;
+  color: #031323;
 }

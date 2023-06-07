@@ -1,11 +1,15 @@
-import Scale from "./Scale"
+import Scale from "./Scale";
 
-const ScaleContainer = () => {
+const ScaleContainer = ({ question, handleAnswer  }) => {
+  
+  
+
   return (
     <div>
-        <Scale/>
+      <Scale handleAnswer={handleAnswer}
+      question={question}/>
     </div>
-  )
+  );
 }
 
 export default ScaleContainer

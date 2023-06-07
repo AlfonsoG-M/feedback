@@ -1,11 +1,14 @@
-import Text from "./Text"
+import Text from "./Text";
 
-const TextContainer = () => {
+const TextContainer = ({ question, handleAnswer }) => {
   return (
     <div>
-        <Text/>
+      <Text
+        handleAnswer={handleAnswer}
+        question={question}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default TextContainer
+export default TextContainer;
