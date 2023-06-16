@@ -4,8 +4,99 @@
       "avatarUrl": "https://i.pravatar.cc/150?img=68",
       "id": "p0",
       "name": "John Smith",
-      "myFeedbacks": [{"user": "", "results": [{"q1": "answer 1"},{"q2": "answer 2"}, {"q3": "answer 3"}]}],
-      "teamfeedbacks": []
+      "myFeedbacks": [],
+      "teamfeedbacks": [
+        {
+          "user": {
+            "id": "p3",
+            "name": "Gertrude Boyle",
+            "avatar": "https://i.pravatar.cc/100?u=p3"
+          },
+          "answer": [
+            {
+              "question": "How much do you trust this person to deliver high quality work?",
+              "answer": 6
+            },
+            {
+              "question": "Is this person up to date with the latest accounting regulations?",
+              "answer": "Not fully. You should work on trying to stay more up to date with regulations"
+            },
+            {
+              "question": "How well does this person understand the technical domain of our product?",
+              "answer": 6
+            },
+            {
+              "question": "Have there been any situations where this person could have managed their emotions better? What happened?",
+              "answer": "sadfas"
+            },
+            {
+              "question": "Does this person care about our users and treats customer support as a high priority?",
+              "answer": "Not always - you should work on this aspect"
+            },
+            {
+              "question": "What would you like this person to work on the most during the next month, to enable their continued growth?",
+              "answer": "asfasdfa"
+            },
+            {
+              "question": "How transparent and clear are this person's plans and work tasks?",
+              "answer": "I almost always know what you are working on, but not always the details or next steps, only the outcomes you are after."
+            },
+            {
+              "question": "How well does this person understand our business goals and roadmap?",
+              "answer": 3
+            },
+            {
+              "question": "Is there anything else you'd like to share with this person?",
+              "answer": "sdfaf"
+            }
+          ]
+        },
+        {
+          "user": {
+            "id": "p6",
+            "name": "Jai Malone",
+            "avatar": "https://i.pravatar.cc/100?u=p6"
+          },
+          "answer": [
+            {
+              "question": "How much do you trust this person to deliver high quality work?",
+              "answer": 5
+            },
+            {
+              "question": "Is this person up to date with the latest accounting regulations?",
+              "answer": "Not fully. You should work on trying to stay more up to date with regulations"
+            },
+            {
+              "question": "How well does this person understand the technical domain of our product?",
+              "answer": 8
+            },
+            {
+              "question": "Have there been any situations where this person could have managed their emotions better? What happened?",
+              "answer": "asdfasf"
+            },
+            {
+              "question": "Does this person care about our users and treats customer support as a high priority?",
+              "answer": "Yes, you go out of our way to help our users and improve their experience"
+            },
+            {
+              "question": "What would you like this person to work on the most during the next month, to enable their continued growth?",
+              "answer": "sadfasf"
+            },
+            {
+              "question": "How transparent and clear are this person's plans and work tasks?",
+              "answer": "I almost always know what you are working on, but not always the details or next steps, only the outcomes you are after."
+            },
+            {
+              "question": "How well does this person understand our business goals and roadmap?",
+              "answer": 10
+            },
+            {
+              "question": "Is there anything else you'd like to share with this person?",
+              "answer": "afsafew"
+            }
+          ]
+        }
+      ]
     },
     {
       "avatarUrl": "https://i.pravatar.cc/150?img=48",

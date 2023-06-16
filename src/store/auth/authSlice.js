@@ -21,6 +21,9 @@ export const authSlice = createSlice({
       localStorage.removeItem("user");
       localStorage.removeItem("isLogged");
     },
+    answers: (state, action) =>{
+      state.answer = action.payload 
+    }
   },
 });
 

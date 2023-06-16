@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Questions from "./Questions";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const QuestionsContainer = ({ userSelected }) => {
   const [questions, setQuestions] = useState([]);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [answer, setAnswer] = useState([]);
-  console.log(answer);
+ const {user} = useSelector((store)=>store.authSlice)
   useEffect(() => {
     const getData = async () => {
       const res = axios.get("http://localhost:5000/questions");
@@ -15,7 +16,21 @@ const QuestionsContainer = ({ userSelected }) => {
     };
     getData();
   }, []);
+ 
+  const handleSubmit= ()=>{
 
+    alert("enviado")
+    
+    let data = {
+      ...userSelected, 
+      teamfeedbacks: [
+        ...userSelected.teamfeedbacks, {user: {id: user.id, name: user.name, avatar: user.avatarUrl}, answer}
+      ]
+    }
+    axios.patch(`http://localhost:5000/user/${userSelected.id}`, data)
+  }
+
+  
   const handleAnswer = (value) => {
     let exist = answer.some((e) => e.question === value.question)
     if (exist) {
@@ -59,6 +74,7 @@ const QuestionsContainer = ({ userSelected }) => {
           calcularProgreso={calcularProgreso}
           length={questions.length}
           handleAnswer={handleAnswer}
+          handleSubmit = {handleSubmit}
         />
       ) : (
         <img

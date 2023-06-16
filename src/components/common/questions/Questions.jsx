@@ -15,7 +15,8 @@ const Questions = ({
   previousQuestion,
   calcularProgreso,
   length,
-  handleAnswer
+  handleAnswer,
+  handleSubmit
 }) => {
   const navigate = useNavigate();
 
@@ -64,11 +65,18 @@ const Questions = ({
             color: "#031323",
             ":hover": { background: "#ACB1B6", color: "white" },
           }}>Skip</Button>
-        <Button onClick={nextQuestion} sx={{
+        <Button onClick={
+          ((questionNumber+1) === questions.length) ? handleSubmit : nextQuestion
+        } sx={{
             background: "white",
             color: "#031323",
-            ":hover": { background: "#ACB1B6", color: "white" },
-          }}>Next</Button>
+            ":hover": { background: "#AB61E5", color: "white" },
+          }}>
+            {
+              questions.length === questionNumber+1 ? "Submit" : "Next"
+            }
+          </Button>
+
       </div>
       <Box sx={{ width: "100%" }}>
         <LinearProgress
