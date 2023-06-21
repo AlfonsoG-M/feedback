@@ -16,7 +16,8 @@ const Questions = ({
   calcularProgreso,
   length,
   handleAnswer,
-  handleSubmit
+  handleSubmit,
+  warning,
 }) => {
   const navigate = useNavigate();
 
@@ -39,13 +40,22 @@ const Questions = ({
       <div>
         <div>
           {questions[questionNumber].type === "scale" && (
-            <ScaleContainer handleAnswer={handleAnswer} question={questions[questionNumber]} />
+            <ScaleContainer
+              handleAnswer={handleAnswer}
+              question={questions[questionNumber]}
+            />
           )}
           {questions[questionNumber].type === "text" && (
-            <TextContainer handleAnswer={handleAnswer} question={questions[questionNumber]} />
+            <TextContainer
+              handleAnswer={handleAnswer}
+              question={questions[questionNumber]}
+            />
           )}
           {questions[questionNumber].type === "multipleChoice" && (
-            <MultipleChoiceContainer handleAnswer={handleAnswer} question={questions[questionNumber]} />
+            <MultipleChoiceContainer
+              handleAnswer={handleAnswer}
+              question={questions[questionNumber]}
+            />
           )}
         </div>
       </div>
@@ -60,23 +70,40 @@ const Questions = ({
         >
           Previous
         </Button>
-        <Button sx={{
+        <Button
+          onClick={() => {
+            {
+              questions[questionNumber].required === true
+                ? warning()
+                : nextQuestion();
+              handleAnswer({
+                question: questions[questionNumber].label,
+                answer: "skipped",
+              });
+            }
+          }}
+          sx={{
             background: "white",
             color: "#031323",
             ":hover": { background: "#ACB1B6", color: "white" },
-          }}>Skip</Button>
-        <Button onClick={
-          ((questionNumber+1) === questions.length) ? handleSubmit : nextQuestion
-        } sx={{
+          }}
+        >
+          Skip
+        </Button>
+        <Button
+          onClick={
+            questionNumber + 1 === questions.length
+              ? handleSubmit
+              : nextQuestion
+          }
+          sx={{
             background: "white",
             color: "#031323",
             ":hover": { background: "#AB61E5", color: "white" },
-          }}>
-            {
-              questions.length === questionNumber+1 ? "Submit" : "Next"
-            }
-          </Button>
-
+          }}
+        >
+          {questions.length === questionNumber + 1 ? "Submit" : "Next"}
+        </Button>
       </div>
       <Box sx={{ width: "100%" }}>
         <LinearProgress

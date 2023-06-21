@@ -1,29 +1,38 @@
 import { useState } from "react";
-import TeamFeedback from "./TeamFeedback"
+import TeamFeedback from "./TeamFeedback";
+import { useSelector } from "react-redux";
 
 const TeamFeedbackContainer = () => {
-  const [array, setArray] = useState([]);
-  const [crecimiento, setCrecimiento] = useState(0);
+  const { user } = useSelector((store) => store.authSlice);
+  const [showAnswers, setShowAnswers] = useState(false);
+  const [feedbackShown, setFeedbackShown] = useState({});
 
-  const agregarElemento = () => {
-    setArray(prevArray => {
-      // Copia el array existente y agrega un nuevo elemento
-      const newArray = [...prevArray, 'Nuevo elemento'];
-
-      // Calcula el crecimiento del array
-      const nuevoCrecimiento = newArray.length - prevArray.length;
-
-      // Actualiza el estado del array y el crecimiento
-      setCrecimiento(nuevoCrecimiento);
-      return newArray;
-    });
+  const handleAnswers = (id) => {
+    let userSelected = user.teamfeedbacks.find((user) => user.user.id === id);
+    setFeedbackShown(userSelected);
+    if ( feedbackShown?.user?.id === id ){
+      setFeedbackShown({})
+      setShowAnswers(false)
+    } else {
+      setShowAnswers(true)
+    }
   };
 
-  return (
-    <div> estoy en TeamFeedbackContainer
-        <TeamFeedback agregarElemento={agregarElemento} array={array} crecimiento={crecimiento} />
-    </div>
-  )
-}
+  
 
-export default TeamFeedbackContainer
+  let data = user.teamfeedbacks;
+  console.log("data", data);
+
+  return (
+    <div>
+      <TeamFeedback
+        data={data}
+        handleAnswers={handleAnswers}
+        showAnswers={showAnswers}
+        feedbackShown={feedbackShown}
+      />
+    </div>
+  );
+};
+
+export default TeamFeedbackContainer;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Questions from "./Questions";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import swal from "sweetalert";
 
 const QuestionsContainer = ({ userSelected }) => {
   const [questions, setQuestions] = useState([]);
@@ -16,10 +17,11 @@ const QuestionsContainer = ({ userSelected }) => {
     };
     getData();
   }, []);
- 
+  
+ console.log(answer);
   const handleSubmit= ()=>{
 
-    alert("enviado")
+    successSubmit()
     
     let data = {
       ...userSelected, 
@@ -47,6 +49,21 @@ const QuestionsContainer = ({ userSelected }) => {
     }
   };
 
+  const successSubmit = ()=>{
+    swal({
+      icon: "success",
+      title: "You have completed your feedback",
+      text: "Thank's for taking the time to answer this questions",
+    });
+  }
+
+  const warning = ()=>{
+    swal({
+      icon: "warning",
+      title: "You can't skip this question",
+      text: "Please take your time and answer it.",
+    });
+  }
 
   const calcularProgreso =
     questions.length > 0 ? ((questionNumber + 1) / questions.length) * 100 : 0;
@@ -75,6 +92,7 @@ const QuestionsContainer = ({ userSelected }) => {
           length={questions.length}
           handleAnswer={handleAnswer}
           handleSubmit = {handleSubmit}
+          warning={warning}
         />
       ) : (
         <img
