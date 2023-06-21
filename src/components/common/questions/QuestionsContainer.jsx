@@ -8,7 +8,7 @@ const QuestionsContainer = ({ userSelected }) => {
   const [questions, setQuestions] = useState([]);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [answer, setAnswer] = useState([]);
- const {user} = useSelector((store)=>store.authSlice)
+  const { user } = useSelector((store) => store.authSlice);
   useEffect(() => {
     const getData = async () => {
       const res = axios.get("http://localhost:5000/questions");
@@ -17,53 +17,67 @@ const QuestionsContainer = ({ userSelected }) => {
     };
     getData();
   }, []);
-  
- console.log(answer);
-  const handleSubmit= ()=>{
 
-    successSubmit()
-    
+  console.log(answer);
+  const handleSubmit = () => {
+    successSubmit();
+
     let data = {
-      ...userSelected, 
+      ...userSelected,
       teamfeedbacks: [
-        ...userSelected.teamfeedbacks, {user: {id: user.id, name: user.name, avatar: user.avatarUrl}, answer}
+        ...userSelected.teamfeedbacks,
+        {
+          user: { id: user.id, name: user.name, avatar: user.avatarUrl },
+          answer,
+        },
+      ],
+    }
+    axios.patch(`http://localhost:5000/user/${userSelected.id}`, data);
+
+    let data2 = {
+      ...user,
+      myFeedbacks:[
+        ...user.myFeedbacks,
+        {
+          user: {id: userSelected.id, name: userSelected.name, avatar: userSelected.avatarUrl},
+          answer,
+        }
       ]
     }
-    axios.patch(`http://localhost:5000/user/${userSelected.id}`, data)
-  }
+    axios.patch(`http://localhost:5000/user/${user.id}`, data2);
+  };
 
-  
   const handleAnswer = (value) => {
-    let exist = answer.some((e) => e.question === value.question)
+    let exist = answer.some((e) => e.question === value.question);
     if (exist) {
-      let newArray = answer.map((e)=>{
-        if(e.question === value.question){
-          return {...e, answer:value.answer}
-        } else{
-          return e
+      let newArray = answer.map((e) => {
+        if (e.question === value.question) {
+          return { ...e, answer: value.answer };
+        } else {
+          return e;
         }
-      })
-      setAnswer(newArray)
+      });
+      setAnswer(newArray);
     } else {
       setAnswer([...answer, value]);
     }
   };
 
-  const successSubmit = ()=>{
+  const successSubmit = () => {
     swal({
       icon: "success",
       title: "You have completed your feedback",
       text: "Thank's for taking the time to answer this questions",
     });
-  }
+  };
 
-  const warning = ()=>{
+  const warning = () => {
     swal({
       icon: "warning",
       title: "You can't skip this question",
       text: "Please take your time and answer it.",
     });
-  }
+  };
 
   const calcularProgreso =
     questions.length > 0 ? ((questionNumber + 1) / questions.length) * 100 : 0;
@@ -91,7 +105,7 @@ const QuestionsContainer = ({ userSelected }) => {
           calcularProgreso={calcularProgreso}
           length={questions.length}
           handleAnswer={handleAnswer}
-          handleSubmit = {handleSubmit}
+          handleSubmit={handleSubmit}
           warning={warning}
         />
       ) : (

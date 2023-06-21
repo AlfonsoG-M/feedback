@@ -30,7 +30,7 @@ const ShareFeedbackContainer = () => {
       setUsers(usersFiltered)
     }
     getdata()
-  },[])
+  },[user.name])
 
   return (
     <div>
