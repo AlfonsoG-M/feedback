@@ -15,7 +15,7 @@ const LoginContainer = () => {
 
   useEffect(()=>{
     const getUsers = async ()=>{
-      let res = await axios.get("http://localhost:5000/user")
+      let res = await axios.get("http://localhost:5001/user")
       setUsers(res.data)
     }
     getUsers()

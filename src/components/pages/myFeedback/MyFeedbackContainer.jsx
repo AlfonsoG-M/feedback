@@ -1,11 +1,17 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import MyFeedback from "./MyFeedback"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { changeNotification } from "../../../store/auth/authSlice";
 
 const MyFeedbackContainer = () => {
   const {user} = useSelector((store)=>store.authSlice)
   const [showAnswers, setShowAnswers] = useState(false);
   const [feedbackShown, setFeedbackShown] = useState({});
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(changeNotification())
+  },[dispatch])
 
   const handleAnswers = (id) => {
     let userSelected = user.myFeedbacks.find((user) => user.user.id === id);
@@ -17,7 +23,7 @@ const MyFeedbackContainer = () => {
       setShowAnswers(true)
     }
   };
-
+  
   
 
   let data = user.myFeedbacks;

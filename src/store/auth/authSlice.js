@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || {},
   isLogged: JSON.parse(localStorage.getItem("isLogged")) || false,
+  notification: false
 };
 
 export const authSlice = createSlice({
@@ -21,13 +22,19 @@ export const authSlice = createSlice({
       localStorage.removeItem("user");
       localStorage.removeItem("isLogged");
     },
-    answers: (state, action) =>{
-      state.answer = action.payload 
+    refreashUser: (state, action)=>{
+      state.user = action.payload
+      localStorage.setItem("user", JSON.stringify(action.payload)); 
+    },
+
+    changeNotification: (state)=>{
+      // state.notification = state.notification ? false : true
+      state.notification = !state.notification 
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login, logout } = authSlice.actions;
+export const { login, logout, refreashUser, changeNotification } = authSlice.actions;
 
 export default authSlice.reducer;

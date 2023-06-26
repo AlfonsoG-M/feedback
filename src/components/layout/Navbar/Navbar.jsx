@@ -6,7 +6,7 @@ import { logout } from "../../../store/auth/authSlice";
 import "./navbar.css";
 
 const Navbar = () => {
-  const { user } = useSelector((store) => store.authSlice);
+  const { user, notification } = useSelector((store) => store.authSlice);
   const dispatch = useDispatch();
 
   return (
@@ -54,7 +54,7 @@ const Navbar = () => {
         >
           Share Feedback
         </NavLink>
-        <Badge badgeContent={4}  color="primary" sx={{padding:"10px"}}>
+        <Badge badgeContent={notification ? 1 : 0}  color="primary" sx={{padding:"10px"}}>
           <NavLink
             to={"/my-feedback"}
             className={({ isActive }) => {

@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
 import Questions from "./Questions";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
+import { changeNotification, refreashUser } from "../../../store/auth/authSlice";
 
-const QuestionsContainer = ({ userSelected }) => {
+const QuestionsContainer = ({ userSelected, setShowQuestions }) => {
   const [questions, setQuestions] = useState([]);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [answer, setAnswer] = useState([]);
   const { user } = useSelector((store) => store.authSlice);
   useEffect(() => {
     const getData = async () => {
-      const res = axios.get("http://localhost:5000/questions");
+      const res = axios.get("http://localhost:5001/questions");
       const result = await res;
       setQuestions(result.data);
     };
     getData();
   }, []);
 
-  console.log(answer);
+ const dispatch = useDispatch()
+
   const handleSubmit = () => {
     successSubmit();
 
@@ -32,7 +34,7 @@ const QuestionsContainer = ({ userSelected }) => {
         },
       ],
     }
-    axios.patch(`http://localhost:5000/user/${userSelected.id}`, data);
+    axios.patch(`http://localhost:5001/user/${userSelected.id}`, data);
 
     let data2 = {
       ...user,
@@ -44,7 +46,14 @@ const QuestionsContainer = ({ userSelected }) => {
         }
       ]
     }
-    axios.patch(`http://localhost:5000/user/${user.id}`, data2);
+    
+    let newInfoUser = axios.patch(`http://localhost:5001/user/${user.id}`, data2);
+    newInfoUser.then((res)=>{
+      dispatch(refreashUser(res.data) )
+      dispatch(changeNotification())
+    })
+    setShowQuestions(false)
+    
   };
 
   const handleAnswer = (value) => {

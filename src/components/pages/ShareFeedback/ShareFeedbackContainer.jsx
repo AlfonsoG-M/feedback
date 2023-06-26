@@ -3,6 +3,7 @@ import ShareFeedback from "./ShareFeedback"
 import axios from "axios";
 import { useSelector } from "react-redux";
 import QuestionsContainer from "../../common/questions/QuestionsContainer";
+// import { useLocalStorage } from "../../../useLocalStorage";
 
 const ShareFeedbackContainer = () => {
   const [period, setPeriod] = useState("");
@@ -16,16 +17,16 @@ const ShareFeedbackContainer = () => {
   }
 
   const {user} = useSelector((store)=> store.authSlice)
-  console.log(user);
+  console.log("user", user);
 
   const exists = (id)=>{
-    let isInArray = user.myFeedbacks.some((user)=> user.id === id)
+    let isInArray = user.myFeedbacks.some((user)=> user.user.id === id)
     return isInArray
   }
 
   useEffect(()=>{
     const getdata = async()=>{
-      const res = await axios.get("http://localhost:5000/user")
+      const res = await axios.get("http://localhost:5001/user")
       let usersFiltered = res.data.filter((users)=> users.name !== user.name)
       setUsers(usersFiltered)
     }
@@ -41,7 +42,7 @@ const ShareFeedbackContainer = () => {
         setPeriod={setPeriod}
         exists={exists}
         fillOutfn={fillOutfn}
-      /> : <QuestionsContainer userSelected={userSelected}  />
+      /> : <QuestionsContainer userSelected={userSelected} setShowQuestions={setShowQuestions} />
       }
 
     </div>

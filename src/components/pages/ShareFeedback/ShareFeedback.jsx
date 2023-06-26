@@ -44,12 +44,14 @@ const ShareFeedback = ({users, period, setPeriod, exists, fillOutfn}) => {
                 <h6>{user.name}</h6>
               </div>
               {exists(user.id) ? (
-                <Button sx={{ width: "200px", margin: "20px" }}>
-                  view submission
+                <Button  sx={{ width: "200px", margin: "20px", border: "1px solid #ACB1B6", borderRadius: "4px", backgroundColor: "white", color: "black", '&:hover': {
+                  backgroundColor: 'primary.navbar',
+                } }}>
+                  View Submission
                 </Button>
               ) : (
                 <Button sx={{ width: "200px", margin: "20px" }} onClick={()=>fillOutfn(user)}>
-                  fill out
+                  Fill out
                 </Button>
               )}
             </div>
